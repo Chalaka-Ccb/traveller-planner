@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="c9a21f58-00e1-4e95-866d-53593935ea36" name="Changes" comment="Add API CALL logic">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="c9a21f58-00e1-4e95-866d-53593935ea36" name="Changes" comment="set folder structure and check end poingt">
+      <change afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/itinerary_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/itinerary.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/itinerary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/logic/planner.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/logic/planner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/itinerary.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/itinerary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/maps_service.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+>>>>>>> master
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+<<<<<<< HEAD
+    <branch-grouping />
+=======
+>>>>>>> master
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Chalaka-Ccb&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Chalaka-Ccb/traveller_backend.git&quot;,
+    &quot;accountId&quot;: &quot;bb03fcde-930b-4421-889e-a367adb198ec&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="31SEnX81MKCFB7R2hPydlYijFUR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.data_loader.executor": "Run",
+    "Python.itinerary.executor": "Run",
+    "Python.itinerary_logic.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.ors_service.executor": "Run",
+    "Python.planner.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+<<<<<<< HEAD
+    "git-widget-placeholder": "main",
+=======
+    "git-widget-placeholder": "master",
+>>>>>>> master
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TEXT"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Python\travellerbackend" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.25659.43" />
+        <option value="bundled-python-sdk-181015f7ab06-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.25659.43" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c9a21f58-00e1-4e95-866d-53593935ea36" name="Changes" comment="" />
+      <created>1755509242311</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755509242311</updated>
+      <workItem from="1755509243127" duration="1330000" />
+      <workItem from="1755757745714" duration="81000" />
+      <workItem from="1756011445090" duration="4198000" />
+      <workItem from="1756400835494" duration="268000" />
+      <workItem from="1756442838488" duration="49000" />
+      <workItem from="1756464082359" duration="60000" />
+      <workItem from="1756465844994" duration="16000" />
+      <workItem from="1756524870123" duration="18000" />
+      <workItem from="1756823456358" duration="12807000" />
+      <workItem from="1756891387278" duration="1739000" />
+      <workItem from="1756897464415" duration="19905000" />
+      <workItem from="1757047590510" duration="1426000" />
+      <workItem from="1758345759607" duration="11880000" />
+      <workItem from="1758432155717" duration="3358000" />
+      <workItem from="1758436599990" duration="4629000" />
+      <workItem from="1758548388334" duration="288000" />
+<<<<<<< HEAD
+      <workItem from="1758559972037" duration="1619000" />
+=======
+>>>>>>> master
+    </task>
+    <task id="LOCAL-00001" summary="set folder structure and check end poingt">
+      <option name="closed" value="true" />
+      <created>1755510562981</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1755510562981</updated>
+    </task>
+<<<<<<< HEAD
+    <task id="LOCAL-00002" summary="Add API CALL logic">
+      <option name="closed" value="true" />
+      <created>1758560274699</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1758560274699</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+=======
+    <option name="localTasksCounter" value="2" />
+>>>>>>> master
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+<<<<<<< HEAD
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="set folder structure and check end poingt" />
+    <MESSAGE value="Add API CALL logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add API CALL logic" />
+=======
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="set folder structure and check end poingt" />
+    <option name="LAST_COMMIT_MESSAGE" value="set folder structure and check end poingt" />
+>>>>>>> master
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/travellerbackend$ors_service.coverage" NAME="ors_service Coverage Results" MODIFIED="1756884679574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/services" />
+    <SUITE FILE_PATH="coverage/travellerbackend$itinerary_logic.coverage" NAME="itinerary_logic Coverage Results" MODIFIED="1756835153688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/logic" />
+    <SUITE FILE_PATH="coverage/travellerbackend$itinerary.coverage" NAME="itinerary Coverage Results" MODIFIED="1756972612726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/api" />
+    <SUITE FILE_PATH="coverage/travellerbackend$planner.coverage" NAME="planner Coverage Results" MODIFIED="1756987154016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/logic" />
+    <SUITE FILE_PATH="coverage/travellerbackend$data_loader.coverage" NAME="data_loader Coverage Results" MODIFIED="1756962810887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/services" />
+    <SUITE FILE_PATH="coverage/travellerbackend$main.coverage" NAME="main Coverage Results" MODIFIED="1758433257100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+  </component>
+</project>
