@@ -1,120 +1,73 @@
-# app/services/ors_service.py
-import math
-from typing import List, Tuple, Dict, Optional
-import openrouteservice
-from app.config import ORS_API_KEY
+import httpx
+from app.core.config import settings
+from typing import List, Tuple
 
-# lazy ORS client
-_client = None
-def get_client():
-    global _client
-    if _client is None and ORS_API_KEY:
-        try:
-            _client = openrouteservice.Client(key=ORS_API_KEY)
-        except Exception as e:
-            print(f"[ORS] client init failed: {e}")
-            _client = None
-    return _client
+# ORS API base URL
+ORS_BASE_URL = "https://api.openrouteservice.org"
 
-# --- helpers ---
-
-def haversine_km(a: Tuple[float, float], b: Tuple[float, float]) -> float:
-    lat1, lon1 = a
-    lat2, lon2 = b
-    R = 6371.0
-    phi1 = math.radians(lat1)
-    phi2 = math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dlambda = math.radians(lon2 - lon1)
-    val = math.sin(dphi/2)**2 + math.cos(phi1)*math.cos(phi2)*math.sin(dlambda/2)**2
-    return 2 * R * math.asin(math.sqrt(val))
-
-def estimate_duration_seconds(distance_km: float, speed_kmph: float = 40.0) -> int:
-    if distance_km <= 0:
-        return 0
-    return int((distance_km / speed_kmph) * 3600)
-
-def _coords_row_to_latlon(row: Dict) -> Tuple[float, float]:
+def get_coordinates_for_location(location_name: str) -> Tuple[float, float] | None:
     """
-    Try to pull (lat, lon) from a dataset row.
-    Supports:
-     - row['coords'] = (lon, lat)
-     - row['Latitude'], row['Longitude']
+    Uses ORS Geocoding to find the coordinates for a location name.
+    Returns (longitude, latitude) or None.
     """
-    if "coords" in row and row["coords"]:
-        try:
-            c0, c1 = row["coords"]
-            if abs(c0) > 90:  # heuristic: lon first
-                lon, lat = c0, c1
-            else:
-                lat, lon = c0, c1
-            return (float(lat), float(lon))
-        except Exception:
-            pass
-    lat = row.get("Latitude") or row.get("Lat") or row.get("lat")
-    lon = row.get("Longitude") or row.get("Lon") or row.get("lng") or row.get("Lng")
-    if lat and lon:
-        return (float(lat), float(lon))
-    return (0.0, 0.0)
-
-def get_leg_duration_ors(a: Tuple[float, float], b: Tuple[float, float]) -> Optional[int]:
-    client = get_client()
-    if not client:
-        return None
+    client = httpx.Client()
     try:
-        coords = [(a[1], a[0]), (b[1], b[0])]  # ORS wants (lon, lat)
-        route = client.directions(coords, profile="driving-car", format="geojson")
-        summary = route["features"][0]["properties"]["summary"]
-        return int(summary.get("duration", 0))
-    except Exception as e:
-        print(f"[ORS] directions failed: {e}")
+        response = client.get(
+            f"{ORS_BASE_URL}/geocode/search",
+            params={
+                "api_key": settings.ORS_API_KEY,
+                "text": location_name,
+                "boundary.country": "LKA", # Restrict search to Sri Lanka
+                "size": 1
+            }
+        )
+        response.raise_for_status() # Raise error for bad responses (4xx, 5xx)
+        data = response.json()
+        
+        if data.get("features"):
+            # Coordinates are [longitude, latitude]
+            coords = data["features"][0]["geometry"]["coordinates"]
+            return (coords[0], coords[1])
         return None
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP error during geocoding: {e}")
+        return None
+    except Exception as e:
+        print(f"Error in get_coordinates_for_location: {e}")
+        return None
+    finally:
+        client.close()
 
-# --- main optimizer ---
-
-def optimize_route(coords_latlon: List[Tuple[float, float]], start_index: int = 0) -> Tuple[List[int], int]:
+def get_distance_matrix(locations: List[Tuple[float, float]]) -> dict | None:
     """
-    Greedy nearest-neighbor TSP ordering.
-    Returns (order indices, total travel duration seconds).
-    Uses ORS per-leg if available; fallback to haversine estimate.
+    Gets a distance/duration matrix from ORS for a list of coordinates.
+    The coordinates must be in (longitude, latitude) format.
     """
-    n = len(coords_latlon)
-    if n <= 1:
-        return list(range(n)), 0
-
-    # distance matrix (km)
-    dist_km = [[0.0]*n for _ in range(n)]
-    for i in range(n):
-        for j in range(i+1, n):
-            d = haversine_km(coords_latlon[i], coords_latlon[j])
-            dist_km[i][j] = d
-            dist_km[j][i] = d
-
-    visited = [False]*n
-    order = [start_index]
-    visited[start_index] = True
-    current = start_index
-
-    while len(order) < n:
-        nearest = None
-        bestd = float("inf")
-        for j in range(n):
-            if not visited[j] and dist_km[current][j] < bestd:
-                bestd = dist_km[current][j]
-                nearest = j
-        if nearest is None:
-            break
-        order.append(nearest)
-        visited[nearest] = True
-        current = nearest
-
-    total_seconds = 0
-    for i in range(len(order)-1):
-        a = coords_latlon[order[i]]
-        b = coords_latlon[order[i+1]]
-        dur = get_leg_duration_ors(a, b)
-        if dur is None:
-            dur = estimate_duration_seconds(dist_km[order[i]][order[i+1]])
-        total_seconds += dur
-
-    return order, total_seconds
+    client = httpx.Client()
+    headers = {
+        'Authorization': settings.ORS_API_KEY,
+        'Content-Type': 'application/json'
+    }
+    body = {
+        "locations": locations,
+        "metrics": ["duration"], # You can also ask for 'distance'
+        "units": "km"
+    }
+    
+    try:
+        response = client.post(
+            f"{ORS_BASE_URL}/v2/matrix/driving-car",
+            json=body,
+            headers=headers
+        )
+        response.raise_for_status() # This will catch 4xx/5xx errors
+        return response.json()
+    except httpx.HTTPStatusError as e:
+        # This will catch errors like the 400 Bad Request you saw before
+        print(f"FATAL ERROR in get_distance_matrix: {e.response.status_code} - {e.response.text}")
+        return None
+    except Exception as e:
+        print(f"Error in get_distance_matrix: {e}")
+        return None
+    finally:
+        client.close()

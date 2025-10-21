@@ -1,23 +1,21 @@
 from fastapi import FastAPI
-from starlette.middleware.cors import CORSMiddleware
-from app.api import itinerary
+from app.api.v1.api import api_router
 
-app = FastAPI(title="SmartTravelLK API", version="0.1.0", debug=True)
-
-# CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+app = FastAPI(
+    title="Sri Lanka Travel Planner API",
+    description="Backend service for the smart travel planning application.",
+    version="1.0.0"
 )
 
-# Routers
-app.include_router(itinerary.router)
+# Include the v1 router
+app.include_router(api_router, prefix="/api/v1")
 
-@app.get("/")
-def root():
-    return {"message": "SmartTravelLK API is running"}
+@app.get("/", tags=["Health"])
+def read_root():
+    """
+    Root endpoint to check if the API is running.
+    """
+    return {"status": "ok", "message": "Welcome to the Travel Planner API!"}
 
-
+# To run the app, save this and in your terminal run:
+# uvicorn app.main:app --reload
